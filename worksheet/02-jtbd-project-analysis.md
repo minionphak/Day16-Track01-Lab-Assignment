@@ -224,13 +224,22 @@ Quy tắc xuyên suốt: **không rõ job thì đừng bàn feature.**
 3. **Step đau nhất đang nằm ở đâu**
 4. **AI leverage point + assumption rủi ro nhất là gì**
 
+### Tóm tắt 4 case nghe được trong bàn
+
+| Người | Case | Job executor họ chọn | Core JTBD | Bước đau nhất | AI leverage point + assumption rủi ro nhất |
+|---|---|---|---|---|---|
+| Nguyễn Tiến Sỉ | Cốc Cốc Browser | Người dùng Việt dùng internet hàng ngày | Tiêu thụ nội dung và tìm thông tin nhanh hơn, giảm ma sát khi dùng internet trong bối cảnh Việt Nam | AI không thay thế browser trực tiếp — nhưng thay đổi kiến trúc thị trường: Generic Search bị xóa sổ, AI Browser/AI Search trở thành entry point mới | AI leverage: tích hợp AI Search vào browser. Assumption rủi ro: user Việt có sẵn sàng chuyển thói quen search sang AI-first không? |
+| Hoàng | Upwork | Doanh nghiệp (từ SME đến Fortune 500) cần nhân lực linh hoạt; Freelancer tìm cơ hội thu nhập | Tìm kiếm và quản lý nhân tài linh hoạt, thực thi project hiệu quả mà không tuyển full-time | Matching chính xác: platform phải đảm bảo freelancer đúng kỹ năng cho đúng job — giờ bị AI làm mờ ranh giới "kỹ năng gì còn giá trị" | AI leverage: giúp matching AI-augmented freelancer với job phù hợp. Assumption: freelancer có đủ kỹ năng AI để vẫn tạo ra giá trị cao hơn tool AI thuần? |
+| Nguyễn Xuân Tới | Chegg | Sinh viên đại học Mỹ ngành STEM, xử lý bài tập sát deadline | Khép lại bài tập nhanh chóng trước giờ lên lớp mà không cần hỗ trợ trực tiếp từ người khác | Deliver câu trả lời đúng và kịp thời — bước Execute bị ChatGPT xóa sổ hoàn toàn bằng cách trả lời trực tiếp, miễn phí, tức thì | AI leverage: tích hợp AI tutor. Assumption rủi ro nhất: sinh viên sẽ trả $19.95/tháng cho "wrapper của ChatGPT" — assumption này sai hoàn toàn |
+| Nguyễn Đăng Khương | Quizlet | Học sinh/sinh viên (18–24 tuổi) tự học và ôn thi | Ghi nhớ và tự kiểm tra kiến thức trước bài kiểm tra, nhanh và có thể học chung bạn bè | Bước Prepare (tạo flashcard): trước AI tốn công, nay AI gen flashcard từ PDF trong vài giây → network effect 500M sets mất giá trị | AI leverage: AI tutor + AI gen flashcard. Assumption rủi ro: unit economics của AI tutor per student có thể vận hành ở giá freemium không — Q-Chat đã thất bại vì điều này |
+
 ### Ghi nhanh sau khi nghe bàn phản biện
 
 | Ý phản biện tôi nghe được | Nó chạm vào phần nào? | Tôi sẽ giữ / sửa gì? |
 |---|---|---|
-| | | |
-| | | |
-| | | |
+| (Từ case Upwork) Buyer và job executor thường không phải 1 người — nếu Founder/CTO thấy ChatGPT gen dataset "đủ tốt", engineer sẽ không có quyền quyết định dùng pipeline của nhóm | Job executor — tôi đang giả định engineer là người quyết định tool, nhưng thực tế budget owner là Founder/CTO | Giữ job executor là engineer (người dùng trực tiếp), nhưng bổ sung vào assumption: cần validate rằng engineer có đủ autonomy để adopt tool mới |
+| (Từ case Quizlet) Q-Chat fail vì unit economics per-user không bền — cost inference quá cao so với giá bán. Pipeline của nhóm cũng cần hỏi: pod cost/ảnh có thực sự rẻ hơn thuê intern label thủ công 2 ngày không? | AI leverage point + product hypothesis — tôi đang claim "giảm từ 2–5 ngày xuống vài giờ" nhưng chưa đưa số cost/ảnh thực tế | Sửa AI leverage point: nhấn mạnh tool phải được chọn dựa trên cost-quality trade-off, không cố định một model; bổ sung cost/ảnh vào success metric |
+| (Từ case Chegg) SEO moat bị Google AI Overviews cắt tại nguồn — tương tự, nếu Ultralytics/HuggingFace tích hợp synthetic data generation thẳng vào workflow, pipeline này mất entry point | Competitive dynamics — assumption rằng engineer cần tool riêng có thể bị phá vỡ nếu platform lớn làm tính năng này built-in | Giữ nguyên scope hiện tại; bổ sung vào assumption A3: cần validate trước khi platform lớn vào thị trường này |
 
 ---
 
@@ -238,19 +247,19 @@ Quy tắc xuyên suốt: **không rõ job thì đừng bàn feature.**
 
 ### Sau khi nghe phản biện, tôi thay đổi gì?
 
-- [ ] Giữ nguyên `job executor`
+- [x] Giữ nguyên `job executor`
 - [ ] Sửa `job executor`
-- [ ] Giữ nguyên `core JTBD`
+- [x] Giữ nguyên `core JTBD`
 - [ ] Sửa `core JTBD`
 - [ ] Giữ nguyên `AI leverage point`
-- [ ] Sửa `AI leverage point`
+- [x] Sửa `AI leverage point`
 - [ ] Giữ nguyên `product hypothesis`
-- [ ] Sửa `product hypothesis`
+- [x] Sửa `product hypothesis`
 
 ### Vì sao tôi giữ / sửa?
 
-> _______________________________________________  
-> _______________________________________________
+> Giữ job executor và core JTBD vì phản biện không bác bỏ được việc Perception Engineer là người trực tiếp dùng tool — chỉ cần bổ sung assumption về autonomy của họ.  
+> Sửa AI leverage point và product hypothesis: phản biện từ Quizlet (unit economics) thuyết phục — không nên lock vào một model cụ thể (SD1.5) vì tool tốt nhất phụ thuộc vào cost-quality trade-off của từng batch. Qwen-Image-Edit hoặc model khác có thể phù hợp hơn trong một số trường hợp. Mục tiêu là "generative realism đủ tốt và hợp túi tiền", không phải "SD1.5 + ControlNet" cụ thể.
 
 ### Version cuối cùng tôi nộp
 
@@ -264,13 +273,13 @@ Quy tắc xuyên suốt: **không rõ job thì đừng bàn feature.**
 > (1) **Prepare** — chụp ảnh thật + gán nhãn thủ công là bottleneck thời gian chính, mất 2–5 ngày/object; (2) **Confirm** — không có automated QA để verify label vẫn đúng sau augmentation mạnh, khiến engineer không tin kết quả pipeline.
 
 **AI leverage point chính:**  
-> Bước Prepare: generative realism (SD1.5 + ControlNet Depth+Canny) biến ảnh sim thành ảnh gần-thật; kết hợp Grounding DINO QA gate tự động kiểm tra label preservation — xóa bỏ phần lớn nhu cầu chụp ảnh thật thủ công mà vẫn có evidence quality có thể trình bày.
+> Bước Prepare + Confirm: dùng **bất kỳ generative AI model nào** (diffusion model với ControlNet như SD1.5/FLUX, hoặc image edit model như Qwen-Image-Edit) đủ để tăng realism ảnh sim trong khi giữ nguyên label integrity — lựa chọn tool dựa trên cost-quality trade-off của từng batch, không cố định một stack. Kết hợp với Grounding DINO QA gate tự động verify label sau mỗi realism pass, thay thế phần lớn visual inspection thủ công.
 
 **Product hypothesis:**  
-> Nếu chúng ta giúp Robotics Perception Engineer tạo dataset labeled tốt hơn ở bước Prepare + Confirm bằng cách kết hợp generative realism (SD1.5 + ControlNet) với Grounding DINO QA gate tự động, thì họ sẽ chuyển từ chụp-label thủ công sang pipeline này — vì giảm từ 2–5 ngày xuống vài giờ trong khi vẫn có bằng chứng label quality đủ thuyết phục reviewer.
+> Nếu chúng ta giúp Robotics Perception Engineer tạo dataset labeled tốt hơn ở bước Prepare + Confirm bằng cách kết hợp **generative realism linh hoạt theo cost-quality trade-off** (diffusion hoặc edit model tùy batch) với Grounding DINO QA gate tự động, thì họ sẽ chuyển từ chụp-label thủ công sang pipeline này — vì giảm từ 2–5 ngày xuống vài giờ với cost/ảnh thấp hơn human labeling, đồng thời có bằng chứng label quality (IoU report, mAP trên Golden Dataset) đủ thuyết phục reviewer.
 
 **Assumption cần validate đầu tiên:**  
-> A3 — Perception Engineer thực sự lặp lại vòng tạo dataset đủ thường xuyên để một pipeline tiết kiệm thời gian tạo ra value đáng kể. Cần phỏng vấn 3–5 engineer thật để xác nhận frequency và severity của pain này trước khi đầu tư thêm vào pipeline.
+> A3 — Perception Engineer thực sự lặp lại vòng tạo dataset đủ thường xuyên để một pipeline tiết kiệm thời gian tạo ra value đáng kể. Cần phỏng vấn 3–5 engineer thật để xác nhận frequency và severity của pain này — và confirm rằng engineer có đủ autonomy để adopt tool mới mà không cần Founder/CTO approve từng lần.
 
 ---
 
@@ -283,7 +292,7 @@ Quy tắc xuyên suốt: **không rõ job thì đừng bàn feature.**
 - [x] Tôi đã điền `JTBD lite map` và khoanh ra 2 bước đau nhất.
 - [x] Tôi đã chỉ ra `AI leverage point` thay vì nhảy thẳng vào feature list.
 - [x] Tôi đã ghi rõ `assumptions to validate`.
-- [ ] Tôi đã sửa version cuối sau khi share trong bàn.
+- [x] Tôi đã sửa version cuối sau khi share trong bàn.
 
 ---
 
